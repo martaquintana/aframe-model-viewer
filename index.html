@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>A-Frame GLTF Viewer</title>
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+
+
+  </head>
+  <body>
+    <a-scene shadow="type:pcfsoft" > <!-- Global shadows -->	
+	<a-sky color="#444"></a-sky>
+
+      <!-- Lightning -->
+      <a-light type="ambient" color="#ffffff" intensity="0.75"></a-light>
+      <a-light id="directional-light" type="directional" position="5 10 7" intensity="0.75" target="#model" light="castShadow:true;"></a-light>
+
+      <!-- Camera -->
+      <a-camera position="0 2 5">
+        <a-cursor visible="false"></a-cursor>
+      </a-camera>
+
+      <!-- Plane -->
+      <a-plane position="0 0 0" rotation="-90 0 0" width="50" height="50" color="#444" shadow></a-plane>
+
+      <!-- Model Container -->
+      <a-entity
+        id="model-container"
+        position="0 0 0"
+        rotation="0 0 0"
+        class="rotatable"
+      ></a-entity>
+    </a-scene>
+
+    <!-- Load models -->
+    <input
+      type="file"
+      id="file-input"
+      accept=".gltf, .glb"
+      style="position: fixed; top: 10px; left: 10px; z-index: 999; background: white; padding: 5px;"
+    />
+
+    <!-- Slider Rotation Speed -->
+    <label for="speed-slider" style="position: fixed; top: 100px; left: 10px; color: white;">Velocidad de Giro:</label>
+    <input 
+      type="range" 
+      id="speed-slider" 
+      min="0" 
+      max="3" 
+      value="1" 
+      step="0.2"
+      style="position: fixed; top: 130px; left: 10px; width: 200px;" 
+    />
+    <span id="speed-value" style="position: fixed; top: 160px; left: 10px; color: white;">100000</span>
+
+    <!-- Checkbox Rotation -->
+    <label for="rotate-checkbox" style="position: fixed; top: 190px; left: 10px; color: white;">Rotar Modelo:</label>
+    <input 
+      type="checkbox" 
+      id="rotate-checkbox"
+      style="position: fixed; top: 190px; left: 120px; z-index: 999;" 
+
+    />
+    <!-- Checkbox Wireframe -->
+    <label for="wireframe-checkbox" style="position: fixed; top: 220px; left: 10px; color: white;">Wireframe:</label>
+    <input 
+      type="checkbox" 
+      id="wireframe-checkbox"
+      style="position: fixed; top: 220px; left: 90px; z-index: 999;" 
+    />
+    <script src="./scripts/modelviewer.js"></script>
+  </body>
+</html>
+
+
+
+
+
+
+
+
